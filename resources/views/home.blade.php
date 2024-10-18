@@ -13,8 +13,9 @@
         <div>
             <h2>Meus Treinos</h2>
             <a href="{{ route('treinos.create') }}" class="btn btn-primary">Criar Novo Treino</a>
-            <!-- Alterado para redirecionar para treinos_exercicios.index -->
             <a href="{{ route('treinos_exercicio.index') }}" class="btn btn-primary">Ver Meus Treinos</a>
+            <!-- Novo botão adicionado para ver progresso -->
+            <a href="{{ route('progresso.index') }}" class="btn btn-primary">Ver Progresso</a>
         </div>
 
         <div style="margin-top: 50px;">

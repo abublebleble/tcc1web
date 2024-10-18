@@ -13,8 +13,9 @@
         <div>
             <h2>Meus Treinos</h2>
             <a href="<?php echo e(route('treinos.create')); ?>" class="btn btn-primary">Criar Novo Treino</a>
-            <!-- Alterado para redirecionar para treinos_exercicios.index -->
             <a href="<?php echo e(route('treinos_exercicio.index')); ?>" class="btn btn-primary">Ver Meus Treinos</a>
+            <!-- Novo botão adicionado para ver progresso -->
+            <a href="<?php echo e(route('progresso.index')); ?>" class="btn btn-primary">Ver Progresso</a>
         </div>
 
         <div style="margin-top: 50px;">
