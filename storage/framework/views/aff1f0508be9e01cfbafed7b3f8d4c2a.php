@@ -1,44 +1,42 @@
-<!-- resources/views/treinos/index.blade.php -->
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Lista de Treinos</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meus Treinos</title>
+    <link rel="stylesheet" href="<?php echo e(asset('css/app.css')); ?>">
 </head>
 <body>
-    <h1>Lista de Treinos</h1>
+    <div class="container">
+        <h1>Meus Treinos</h1>
 
-    <a href="<?php echo e(route('treinos.create')); ?>">Criar Novo Treino</a>
-
-    <?php if(session('success')): ?>
-        <p><?php echo e(session('success')); ?></p>
-    <?php endif; ?>
-
-    <table border="1">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Nome do Treino</th>
-                <th>Ações</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php $__currentLoopData = $treinos; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $treino): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+        <table class="table">
+            <thead>
                 <tr>
-                    <td><?php echo e($treino->id); ?></td>
-                    <td><?php echo e($treino->nome_treino); ?></td>
-                    <td>
-                        <a href="<?php echo e(route('treinos.edit', $treino->id)); ?>">Editar</a>
-                        <form action="<?php echo e(route('treinos.destroy', $treino->id)); ?>" method="POST" style="display:inline;">
-                            <?php echo csrf_field(); ?>
-                            <?php echo method_field('DELETE'); ?>
-                            <button type="submit">Excluir</button>
-                        </form>
-                    </td>
+                    <th>Nome do Treino</th>
+                    <th>Ações</th>
                 </tr>
-            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                <?php $__currentLoopData = $treinos; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $treino): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <tr>
+                        <td><?php echo e($treino->nome_treino); ?></td>
+                        <td>
+                            <a href="<?php echo e(route('treinos.show', $treino->id)); ?>" class="btn btn-primary">Ver</a>
+                            <a href="<?php echo e(route('treinos.edit', $treino->id)); ?>" class="btn btn-warning">Editar</a>
+                            <form action="<?php echo e(route('treinos.destroy', $treino->id)); ?>" method="POST" style="display: inline-block;">
+                                <?php echo csrf_field(); ?>
+                                <?php echo method_field('DELETE'); ?>
+                                <button type="submit" class="btn btn-danger">Excluir</button>
+                            </form>
+                            <a href="<?php echo e(route('treinos_exercicio.create', ['treino_id' => $treino->id])); ?>" class="btn btn-success">Adicionar Exercício</a>
+                        </td>
+                    </tr>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+            </tbody>
+        </table>
+        <a href="<?php echo e(route('home')); ?>" class="btn btn-secondary">Voltar para Home</a>
+    </div>
 </body>
 </html>
 <?php /**PATH D:\César\Desktop\tcc1-main\resources\views/treinos/index.blade.php ENDPATH**/ ?>

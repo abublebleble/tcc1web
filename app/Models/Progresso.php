@@ -10,8 +10,15 @@ class Progresso extends Model
     use HasFactory;
 
     protected $table = 'progresso';
-    protected $fillable = ['id_treino_exercicio', 'data', 'carga', 'repeticoes_realizadas'];
 
+    protected $fillable = [
+        'id_treino_exercicio', 
+        'data', 
+        'carga', 
+        'repeticoes_realizadas'
+    ];
+
+    // Relacionamento com TreinoExercicio
     public function treinoExercicio()
     {
         return $this->belongsTo(TreinoExercicio::class, 'id_treino_exercicio');
