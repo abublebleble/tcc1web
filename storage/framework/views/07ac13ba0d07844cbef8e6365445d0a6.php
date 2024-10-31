@@ -62,19 +62,12 @@
 <?php unset($__componentOriginalb24df6adf99a77ed35057e476f61e153); ?>
 <?php endif; ?>
 
-        <?php $__sessionArgs = ['status'];
-if (session()->has($__sessionArgs[0])) :
-if (isset($value)) { $__sessionPrevious[] = $value; }
-$value = session()->get($__sessionArgs[0]); ?>
+        <?php if(session('status')): ?>
             <div class="mb-4 font-medium text-sm text-green-600">
-                <?php echo e($value); ?>
+                <?php echo e(session('status')); ?>
 
             </div>
-        <?php unset($value);
-if (isset($__sessionPrevious) && !empty($__sessionPrevious)) { $value = array_pop($__sessionPrevious); }
-if (isset($__sessionPrevious) && empty($__sessionPrevious)) { unset($__sessionPrevious); }
-endif;
-unset($__sessionArgs); ?>
+        <?php endif; ?>
 
         <form method="POST" action="<?php echo e(route('login')); ?>">
             <?php echo csrf_field(); ?>
@@ -191,10 +184,17 @@ unset($__sessionArgs); ?>
                 </label>
             </div>
 
-            <div class="flex items-center justify-end mt-4">
+            <div class="flex items-center justify-between mt-4">
                 <?php if(Route::has('password.request')): ?>
                     <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="<?php echo e(route('password.request')); ?>">
-                        <?php echo e(__('Forgot your password?')); ?>
+                        <?php echo e(__('Esqueceu sua senha?')); ?>
+
+                    </a>
+                <?php endif; ?>
+
+                <?php if(Route::has('register')): ?>
+                    <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="<?php echo e(route('register')); ?>">
+                        <?php echo e(__('Registre-se')); ?>
 
                     </a>
                 <?php endif; ?>
