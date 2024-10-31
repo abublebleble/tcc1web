@@ -9,6 +9,9 @@
 <body>
     <div class="container">
         <h1>Meus Treinos</h1>
+        
+        <!-- Botão para criar novo treino -->
+        <a href="{{ route('treinos.create') }}" class="btn btn-primary mb-3">Criar Treino</a>
 
         <table class="table">
             <thead>
@@ -22,7 +25,6 @@
                     <tr>
                         <td>{{ $treino->nome_treino }}</td>
                         <td>
-                            <a href="{{ route('treinos.show', $treino->id) }}" class="btn btn-primary">Ver</a>
                             <a href="{{ route('treinos.edit', $treino->id) }}" class="btn btn-warning">Editar</a>
                             <form action="{{ route('treinos.destroy', $treino->id) }}" method="POST" style="display: inline-block;">
                                 @csrf

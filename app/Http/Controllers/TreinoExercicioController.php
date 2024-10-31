@@ -6,18 +6,25 @@ use App\Models\TreinoExercicio;
 use App\Models\Treino;
 use App\Models\Exercicio;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TreinoExercicioController extends Controller
 {
     public function index()
     {
-        $treinosExercicios = TreinoExercicio::with(['treino', 'exercicio'])->get();
+        // Obtém os treinos do usuário autenticado e inclui os exercícios relacionados
+        $treinosExercicios = TreinoExercicio::with(['treino', 'exercicio'])
+            ->whereHas('treino', function($query) {
+                $query->where('user_id', Auth::id());
+            })->get();
+
         return view('treinos_exercicio.index', compact('treinosExercicios'));
     }
 
     public function create()
     {
-        $treinos = Treino::all();
+        // Obtém os treinos do usuário autenticado
+        $treinos = Treino::where('user_id', Auth::id())->get();
         $exercicios = Exercicio::all();
         return view('treinos_exercicio.create', compact('treinos', 'exercicios'));
     }
@@ -33,24 +40,40 @@ class TreinoExercicioController extends Controller
             'carga' => 'required|numeric',
         ]);
 
+        // Verifica se o treino pertence ao usuário autenticado
+        $treino = Treino::findOrFail($request->id_treino);
+        if ($treino->user_id !== Auth::id()) {
+            abort(403, 'Você não tem permissão para adicionar exercícios a este treino.');
+        }
+
         TreinoExercicio::create($request->all());
 
         return redirect()->route('treinos_exercicio.index')->with('success', 'Exercício adicionado ao treino com sucesso!');
     }
 
-    public function show(TreinoExercicio $treinoExercicio)
+    public function show(TreinoExercicio $treinos_exercicio)
     {
-        return view('treinos_exercicio.show', compact('treinoExercicio'));
+        // Verifica se o treino pertence ao usuário autenticado
+        if ($treinos_exercicio->treino->user_id !== Auth::id()) {
+            abort(403, 'Você não tem permissão para ver este exercício.');
+        }
+
+        return view('treinos_exercicio.show', compact('treinos_exercicio'));
     }
 
-    public function edit(TreinoExercicio $treinoExercicio)
+    public function edit(TreinoExercicio $treinos_exercicio)
     {
-        $treinos = Treino::all();
+        // Verifica se o treino pertence ao usuário autenticado
+        if ($treinos_exercicio->treino->user_id !== Auth::id()) {
+            abort(403, 'Você não tem permissão para editar este exercício.');
+        }
+
+        $treinos = Treino::where('user_id', Auth::id())->get();
         $exercicios = Exercicio::all();
-        return view('treinos_exercicio.edit', compact('treinoExercicio', 'treinos', 'exercicios'));
+        return view('treinos_exercicio.edit', compact('treinos_exercicio', 'treinos', 'exercicios'));
     }
 
-    public function update(Request $request, TreinoExercicio $treinoExercicio)
+    public function update(Request $request, TreinoExercicio $treinos_exercicio)
     {
         $request->validate([
             'id_treino' => 'required|exists:treinos,id',
@@ -61,14 +84,24 @@ class TreinoExercicioController extends Controller
             'carga' => 'required|numeric',
         ]);
 
-        $treinoExercicio->update($request->all());
+        // Verifica se o treino pertence ao usuário autenticado
+        if ($treinos_exercicio->treino->user_id !== Auth::id()) {
+            abort(403, 'Você não tem permissão para atualizar este exercício.');
+        }
+
+        $treinos_exercicio->update($request->all());
 
         return redirect()->route('treinos_exercicio.index')->with('success', 'Exercício atualizado com sucesso!');
     }
 
-    public function destroy(TreinoExercicio $treinoExercicio)
+    public function destroy(TreinoExercicio $treinos_exercicio)
     {
-        $treinoExercicio->delete();
+        // Verifica se o treino pertence ao usuário autenticado
+        if ($treinos_exercicio->treino->user_id !== Auth::id()) {
+            abort(403, 'Você não tem permissão para remover este exercício.');
+        }
+
+        $treinos_exercicio->delete();
 
         return redirect()->route('treinos_exercicio.index')->with('success', 'Exercício removido do treino com sucesso!');
     }

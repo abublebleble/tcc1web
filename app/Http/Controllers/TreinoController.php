@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use App\Models\Treino;
@@ -10,7 +11,7 @@ class TreinoController extends Controller
     public function index()
     {
         // Obtém os treinos do usuário autenticado
-        $treinos = Treino::where('id_usuario', Auth::id())->get();
+        $treinos = Treino::where('user_id', Auth::id())->get();
         return view('treinos.index', compact('treinos'));
     }
 
@@ -25,10 +26,10 @@ class TreinoController extends Controller
             'nome_treino' => 'required|string|max:255',
         ]);
 
-        // Criação do treino e atribuição do id_usuario
+        // Criação do treino e atribuição do user_id
         Treino::create([
             'nome_treino' => $request->nome_treino,
-            'id_usuario' => Auth::id(), // Atribuindo o id_usuario do usuário autenticado
+            'user_id' => Auth::id(), // Atribuindo o user_id do usuário autenticado
         ]);
 
         return redirect()->route('treinos.index')->with('success', 'Treino criado com sucesso!');
@@ -37,7 +38,7 @@ class TreinoController extends Controller
     public function show(Treino $treino)
     {
         // Adiciona verificação para garantir que o treino pertence ao usuário autenticado
-        if ($treino->id_usuario !== Auth::id()) {
+        if ($treino->user_id !== Auth::id()) {
             abort(403, 'Você não tem permissão para ver este treino.');
         }
 
@@ -47,7 +48,7 @@ class TreinoController extends Controller
     public function edit(Treino $treino)
     {
         // Adiciona verificação para garantir que o treino pertence ao usuário autenticado
-        if ($treino->id_usuario !== Auth::id()) {
+        if ($treino->user_id !== Auth::id()) {
             abort(403, 'Você não tem permissão para editar este treino.');
         }
 
@@ -61,7 +62,7 @@ class TreinoController extends Controller
         ]);
 
         // Adiciona verificação para garantir que o treino pertence ao usuário autenticado
-        if ($treino->id_usuario !== Auth::id()) {
+        if ($treino->user_id !== Auth::id()) {
             abort(403, 'Você não tem permissão para atualizar este treino.');
         }
 
@@ -73,7 +74,7 @@ class TreinoController extends Controller
     public function destroy(Treino $treino)
     {
         // Adiciona verificação para garantir que o treino pertence ao usuário autenticado
-        if ($treino->id_usuario !== Auth::id()) {
+        if ($treino->user_id !== Auth::id()) {
             abort(403, 'Você não tem permissão para excluir este treino.');
         }
 

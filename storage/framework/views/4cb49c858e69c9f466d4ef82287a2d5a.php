@@ -43,6 +43,9 @@
             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
         </tbody>
     </table>
+
+    <!-- Botão para voltar para a home -->
+    <a href="<?php echo e(route('home')); ?>" style="display: inline-block; margin-top: 20px; padding: 10px; text-decoration: none; border-radius: 5px;">Voltar para Home</a>
 </body>
 </html>
 <?php /**PATH D:\César\Desktop\tcc1-main\resources\views/progresso/index.blade.php ENDPATH**/ ?>

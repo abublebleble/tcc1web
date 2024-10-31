@@ -45,8 +45,8 @@ Route::middleware([
     Route::resource('grupos_musculares', GrupoMuscularController::class);
 
     // Relação entre treinos e exercícios
+    
     Route::resource('treinos_exercicio', TreinoExercicioController::class);
-
     // CRUD de treinos
     Route::resource('treinos', TreinoController::class);
 

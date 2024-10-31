@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -9,11 +10,11 @@ class Treino extends Model
     use HasFactory;
 
     protected $table = 'treinos';
-    protected $fillable = ['id_usuario', 'nome_treino']; // Certifique-se de que 'id_usuario' está aqui
+    protected $fillable = ['nome_treino', 'user_id'];
 
     public function usuario()
     {
-        return $this->belongsTo(User::class, 'id_usuario'); // Altere Usuario para User, se você está usando o modelo padrão do Laravel
+        return $this->belongsTo(User::class, 'user_id'); 
     }
 
     public function exercicios()

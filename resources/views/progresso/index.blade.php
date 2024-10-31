@@ -43,5 +43,8 @@
             @endforeach
         </tbody>
     </table>
+
+    <!-- Botão para voltar para a home -->
+    <a href="{{ route('home') }}" style="display: inline-block; margin-top: 20px; padding: 10px; text-decoration: none; border-radius: 5px;">Voltar para Home</a>
 </body>
 </html>

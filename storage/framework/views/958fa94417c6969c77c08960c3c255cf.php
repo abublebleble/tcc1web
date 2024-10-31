@@ -17,6 +17,9 @@
             </div>
         <?php endif; ?>
 
+        <!-- Botão para criar um novo treino -->
+        <a href="<?php echo e(route('treinos.create')); ?>" class="btn btn-primary mb-3">Criar Treino</a>
+
         <a href="<?php echo e(route('treinos_exercicio.create')); ?>" class="button">Adicionar Exercício a um Treino</a>
 
         <table>
@@ -33,18 +36,18 @@
                 </tr>
             </thead>
             <tbody>
-                <?php $__currentLoopData = $treinosExercicios; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $treinoExercicio): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                <?php $__currentLoopData = $treinosExercicios; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $treinos_exercicio): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <tr>
-                        <td><?php echo e($treinoExercicio->id); ?></td>
-                        <td><?php echo e($treinoExercicio->treino->nome_treino); ?></td>
-                        <td><?php echo e($treinoExercicio->exercicio->nome_exercicio); ?></td>
-                        <td><?php echo e($treinoExercicio->ordem); ?></td>
-                        <td><?php echo e($treinoExercicio->series); ?></td>
-                        <td><?php echo e($treinoExercicio->repeticoes); ?></td>
-                        <td><?php echo e($treinoExercicio->carga); ?></td>
+                        <td><?php echo e($treinos_exercicio->id); ?></td>
+                        <td><?php echo e($treinos_exercicio->treino->nome_treino); ?></td>
+                        <td><?php echo e($treinos_exercicio->exercicio->nome_exercicio); ?></td>
+                        <td><?php echo e($treinos_exercicio->ordem); ?></td>
+                        <td><?php echo e($treinos_exercicio->series); ?></td>
+                        <td><?php echo e($treinos_exercicio->repeticoes); ?></td>
+                        <td><?php echo e($treinos_exercicio->carga); ?></td>
                         <td>
-                            <a href="<?php echo e(route('treinos_exercicio.edit', $treinoExercicio->id)); ?>">Editar</a>
-                            <form action="<?php echo e(route('treinos_exercicio.destroy', $treinoExercicio->id)); ?>" method="POST" style="display:inline;">
+                            <a href="<?php echo e(route('treinos_exercicio.edit', ['treinos_exercicio' => $treinos_exercicio->id])); ?>">Editar</a>
+                            <form action="<?php echo e(route('treinos_exercicio.destroy', ['treinos_exercicio' => $treinos_exercicio->id])); ?>" method="POST" style="display:inline;">
                                 <?php echo csrf_field(); ?>
                                 <?php echo method_field('DELETE'); ?>
                                 <button type="submit">Excluir</button>
@@ -54,6 +57,9 @@
                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             </tbody>
         </table>
+
+        <!-- Botão para voltar para a home, agora posicionado no final -->
+        <a href="<?php echo e(route('home')); ?>" class="btn btn-secondary mt-3">Voltar para Home</a>
     </div>
 </body>
 </html>

@@ -18,27 +18,7 @@
             <a href="<?php echo e(route('progresso.index')); ?>" class="btn btn-primary">Ver Progresso</a>
         </div>
 
-        <div style="margin-top: 50px;">
-            <h2>Administração</h2>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Ação</th>
-                        <th>Ir Para</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Gerenciar Grupos Musculares</td>
-                        <td><a href="<?php echo e(route('grupos_musculares.index')); ?>" class="btn btn-secondary">Grupos Musculares</a></td>
-                    </tr>
-                    <tr>
-                        <td>Gerenciar Exercícios</td>
-                        <td><a href="<?php echo e(route('exercicios.index')); ?>" class="btn btn-secondary">Exercícios</a></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+     
     </div>
 </body>
 </html>
