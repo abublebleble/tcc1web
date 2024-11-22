@@ -1,4 +1,5 @@
 <?php
+
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WorkoutController;
 use App\Http\Controllers\ExerciseController;
@@ -8,9 +9,9 @@ use App\Http\Controllers\TreinoExercicioController;
 use App\Http\Controllers\TreinoController;
 use App\Http\Controllers\ProgressoController;
 
-// Redireciona para o login se o usuário não estiver autenticado
+// Redireciona para o login do Jetstream se o usuário não estiver autenticado
 Route::get('/', function () {
-    return redirect('/home');
+    return redirect('/login');
 });
 
 // Rotas protegidas por autenticação
@@ -45,11 +46,14 @@ Route::middleware([
     Route::resource('grupos_musculares', GrupoMuscularController::class);
 
     // Relação entre treinos e exercícios
-    
     Route::resource('treinos_exercicio', TreinoExercicioController::class);
+
     // CRUD de treinos
     Route::resource('treinos', TreinoController::class);
 
     // CRUD de progresso
     Route::resource('progresso', ProgressoController::class);
+
+    // Página de gerenciamento de login (Jetstream)
+    
 });
