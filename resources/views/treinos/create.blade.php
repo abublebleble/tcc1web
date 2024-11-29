@@ -1,21 +1,34 @@
-<!-- resources/views/treinos/create.blade.php -->
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <meta charset="UTF-8">
-    <title>Criar Treino</title>
-</head>
-<body>
-    <h1>Criar Novo Treino</h1>
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('Criar Novo Treino') }}
+        </h2>
+    </x-slot>
 
-    <form action="{{ route('treinos.store') }}" method="POST">
-        @csrf
-        <label for="nome_treino">Nome do Treino:</label>
-        <input type="text" name="nome_treino" required>
+    <div class="py-6">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-4">
+                <!-- Exibição de mensagem de sucesso após criação do treino -->
+                @if(session('success'))
+                    <div class="alert alert-success mb-4">{{ session('success') }}</div>
+                @endif
 
-        <button type="submit" >Criar Treino</button>
-    </form>
-    <a href="{{ route('treinos.index') }}">Voltar</a>
-</body>
-</html>
+                <form action="{{ route('treinos.store') }}" method="POST">
+                    @csrf
+                    <div class="form-group mb-4">
+                        <label for="nome_treino">Nome do Treino:</label>
+                        <input type="text" name="nome_treino" class="form-control border-2 border-gray-300 rounded-lg p-2" required>
+                    </div>
+                    <!-- Botão Criar Treino -->
+                    <button type="submit" class="btn btn-primary px-6 py-3 rounded-md text-white font-semibold bg-indigo-600 hover:bg-indigo-800 transition duration-300">
+                        Criar Treino
+                    </button>
+                    <!-- Botão Voltar para Meus Treinos -->
+                    <a href="{{ route('treinos.index') }}" class="btn btn-primary px-6 py-3 rounded-md text-white font-semibold bg-gray-800 hover:bg-gray-700 transition duration-300">
+                        Voltar para Meus Treinos
+                    </a>
+                </form>
+            </div>
+        </div>
+    </div>
+</x-app-layout>

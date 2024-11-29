@@ -1,5 +1,4 @@
- 
-@include("nav")
+<x-app-layout>
     <div class="text-center">
         <h1 class="text-2xl font-bold">Bem-vindo à Minha Academia</h1>
         <p class="mt-2">Utilize o menu acima para gerenciar seus treinos e progresso.</p>
@@ -15,3 +14,4 @@
             </ul>
         </div>
     </div>
+</x-app-layout>

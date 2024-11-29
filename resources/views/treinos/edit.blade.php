@@ -1,22 +1,47 @@
-<!-- resources/views/treinos/edit.blade.php -->
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <title>Editar Treino</title>
-</head>
-<body>
-    <h1>Editar Treino</h1>
+    <x-app-layout>
+        <x-slot name="header">
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight flex justify-between items-center">
+                {{ __('Editar Treino') }}
+                <!-- Botão Criar Treino (alinhado à direita) -->
+                
+            </h2>
+        </x-slot>
 
-    <form action="{{ route('treinos.update', $treino->id) }}" method="POST">
-        @csrf
-        @method('PUT')
-        
-        <label for="nome_treino">Nome do Treino:</label>
-        <input type="text" name="nome_treino" value="{{ $treino->nome_treino }}" required>
+        <div class="py-6">
+            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-4">
 
-        <button type="submit">Atualizar Treino</button>
-    </form>
-    <a href="{{ route('treinos.index') }}">Voltar</a>
-</body>
-</html>
+                    <!-- Exibição de mensagem de sucesso -->
+                    @if(session('success'))
+                        <div class="alert alert-success mb-4">{{ session('success') }}</div>
+                    @endif
+
+                    <!-- Formulário para Editar Treino -->
+                    <form action="{{ route('treinos.update', $treino->id) }}" method="POST" class="space-y-4">
+                        @csrf
+                        @method('PUT')
+
+                        <div>
+                            <label for="nome_treino" class="block text-lg font-semibold text-gray-700">Nome do Treino:</label>
+                            <input type="text" name="nome_treino" value="{{ $treino->nome_treino }}" required
+                                class="w-full px-4 py-2 border rounded-md text-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-600">
+                        </div>
+
+                        <div class="flex justify-end space-x-4">
+                            <button type="submit" class="px-6 py-3 rounded-md text-white font-semibold bg-indigo-600 hover:bg-indigo-800 transition duration-300">
+                                Atualizar Treino
+                            </button>
+                            <a href="{{ route('treinos.index') }}" class="px-6 py-3 rounded-md text-gray-800 font-semibold bg-gray-200 hover:bg-gray-300 transition duration-300">
+                                Cancelar
+                            </a>
+                        </div>
+                    </form>
+
+                    <!-- Botão Voltar para Home -->
+                    <a href="{{ route('home') }}" class="btn btn-secondary px-6 py-3 rounded-md text-white font-semibold bg-gray-800 hover:bg-gray-700 transition duration-300 mt-6">
+                        Voltar para Home
+                    </a>
+                </div>
+            </div>
+        </div>
+    </x-app-layout>

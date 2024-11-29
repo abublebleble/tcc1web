@@ -8,37 +8,19 @@
 <?php $attributes = $attributes->except(\App\View\Components\AppLayout::ignoredParameterNames()); ?>
 <?php endif; ?>
 <?php $component->withAttributes([]); ?>
-     <?php $__env->slot('header', null, []); ?> 
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            <?php echo e(__('Dashboard')); ?>
+    <div class="text-center">
+        <h1 class="text-2xl font-bold">Bem-vindo à Minha Academia</h1>
+        <p class="mt-2">Utilize o menu acima para gerenciar seus treinos e progresso.</p>
+    </div>
 
-        </h2>
-     <?php $__env->endSlot(); ?>
-
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                <?php if (isset($component)) { $__componentOriginal791d26948561d5a0da3d85fee400a7b6 = $component; } ?>
-<?php if (isset($attributes)) { $__attributesOriginal791d26948561d5a0da3d85fee400a7b6 = $attributes; } ?>
-<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.welcome','data' => []] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
-<?php $component->withName('welcome'); ?>
-<?php if ($component->shouldRender()): ?>
-<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
-<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
-<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
-<?php endif; ?>
-<?php $component->withAttributes([]); ?>
-<?php echo $__env->renderComponent(); ?>
-<?php endif; ?>
-<?php if (isset($__attributesOriginal791d26948561d5a0da3d85fee400a7b6)): ?>
-<?php $attributes = $__attributesOriginal791d26948561d5a0da3d85fee400a7b6; ?>
-<?php unset($__attributesOriginal791d26948561d5a0da3d85fee400a7b6); ?>
-<?php endif; ?>
-<?php if (isset($__componentOriginal791d26948561d5a0da3d85fee400a7b6)): ?>
-<?php $component = $__componentOriginal791d26948561d5a0da3d85fee400a7b6; ?>
-<?php unset($__componentOriginal791d26948561d5a0da3d85fee400a7b6); ?>
-<?php endif; ?>
-            </div>
+    <div class="card mt-5 shadow-lg">
+        <div class="card-body">
+            <h2 class="card-title text-center">Destaques</h2>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">Crie e organize seus treinos.</li>
+                <li class="list-group-item">Visualize o progresso dos seus exercícios.</li>
+                <li class="list-group-item">Gerencie sua conta e configurações de login.</li>
+            </ul>
         </div>
     </div>
  <?php echo $__env->renderComponent(); ?>

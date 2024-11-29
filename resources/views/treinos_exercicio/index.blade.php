@@ -1,64 +1,58 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de Exercícios por Treino</title>
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-</head>
-<body>
-    <div class="container">
-        <h1>Lista de Exercícios por Treino</h1>
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('Lista de Exercícios por Treino') }}
+        </h2>
+    </x-slot>
 
-        @if(session('success'))
-            <div class="alert alert-success">
-                {{ session('success') }}
+    <div class="py-6">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-4">
+                @if(session('success'))
+                    <div class="alert alert-success">{{ session('success') }}</div>
+                @endif
+
+                <a href="{{ route('treinos.create') }}" class="btn btn-primary mb-3">Criar Treino</a>
+                <a href="{{ route('treinos_exercicio.create') }}" class="btn btn-info mb-3">Adicionar Exercício</a>
+
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Treino</th>
+                            <th>Exercício</th>
+                            <th>Ordem</th>
+                            <th>Séries</th>
+                            <th>Repetições</th>
+                            <th>Carga</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($treinosExercicios as $treinos_exercicio)
+                            <tr>
+                                <td>{{ $treinos_exercicio->id }}</td>
+                                <td>{{ $treinos_exercicio->treino->nome_treino }}</td>
+                                <td>{{ $treinos_exercicio->exercicio->nome_exercicio }}</td>
+                                <td>{{ $treinos_exercicio->ordem }}</td>
+                                <td>{{ $treinos_exercicio->series }}</td>
+                                <td>{{ $treinos_exercicio->repeticoes }}</td>
+                                <td>{{ $treinos_exercicio->carga }}</td>
+                                <td>
+                                    <a href="{{ route('treinos_exercicio.edit', ['treinos_exercicio' => $treinos_exercicio->id]) }}" class="btn btn-warning btn-sm">Editar</a>
+                                    <form action="{{ route('treinos_exercicio.destroy', ['treinos_exercicio' => $treinos_exercicio->id]) }}" method="POST" style="display:inline;">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger btn-sm">Excluir</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+
+                <a href="{{ route('home') }}" class="btn btn-secondary mt-3">Voltar para Home</a>
             </div>
-        @endif
-
-        <!-- Botão para criar um novo treino -->
-        <a href="{{ route('treinos.create') }}" class="btn btn-primary mb-3">Criar Treino</a>
-
-        <a href="{{ route('treinos_exercicio.create') }}" class="button">Adicionar Exercício a um Treino</a>
-
-        <table>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Treino</th>
-                    <th>Exercício</th>
-                    <th>Ordem</th>
-                    <th>Séries</th>
-                    <th>Repetições</th>
-                    <th>Carga</th>
-                    <th>Ações</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach($treinosExercicios as $treinos_exercicio)
-                    <tr>
-                        <td>{{ $treinos_exercicio->id }}</td>
-                        <td>{{ $treinos_exercicio->treino->nome_treino }}</td>
-                        <td>{{ $treinos_exercicio->exercicio->nome_exercicio }}</td>
-                        <td>{{ $treinos_exercicio->ordem }}</td>
-                        <td>{{ $treinos_exercicio->series }}</td>
-                        <td>{{ $treinos_exercicio->repeticoes }}</td>
-                        <td>{{ $treinos_exercicio->carga }}</td>
-                        <td>
-                            <a href="{{ route('treinos_exercicio.edit', ['treinos_exercicio' => $treinos_exercicio->id]) }}">Editar</a>
-                            <form action="{{ route('treinos_exercicio.destroy', ['treinos_exercicio' => $treinos_exercicio->id]) }}" method="POST" style="display:inline;">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit">Excluir</button>
-                            </form>
-                        </td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
-
-        <!-- Botão para voltar para a home, agora posicionado no final -->
-        <a href="{{ route('home') }}" class="btn btn-secondary mt-3">Voltar para Home</a>
+        </div>
     </div>
-</body>
-</html>
+</x-app-layout>
