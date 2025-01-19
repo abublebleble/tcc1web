@@ -24,6 +24,12 @@
             <a href="{{ route('treinos.create') }}" class="text-gray-500 hover:text-gray-800 transition-colors {{ request()->routeIs('treinos.create') ? 'text-blue-500 font-semibold' : '' }}">Criar Novo Treino</a>
             <a href="{{ route('treinos_exercicio.index') }}" class="text-gray-500 hover:text-gray-800 transition-colors {{ request()->routeIs('treinos_exercicio.index') ? 'text-blue-500 font-semibold' : '' }}">Ver Meus Treinos</a>
             <a href="{{ route('progresso.index') }}" class="text-gray-500 hover:text-gray-800 transition-colors {{ request()->routeIs('progresso.index') ? 'text-blue-500 font-semibold' : '' }}">Ver Progresso</a>
+
+            <!-- Botões visíveis apenas para administradores -->
+            @if (auth()->user() && auth()->user()->is_admin)
+                <a href="{{ route('exercicios.index') }}" class="text-gray-500 hover:text-gray-800 transition-colors {{ request()->routeIs('exercicios.index') ? 'text-blue-500 font-semibold' : '' }}">Exercícios</a>
+                <a href="{{ route('grupos_musculares.index') }}" class="text-gray-500 hover:text-gray-800 transition-colors {{ request()->routeIs('grupos_musculares.index') ? 'text-blue-500 font-semibold' : '' }}">Grupos Musculares</a>
+            @endif
         </div>
 
         <!-- User menu toggle (Agora usando Alpine.js) -->
@@ -50,8 +56,6 @@
         </div>
     </div>
 </header>
-
-
 
 <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2" defer></script>
 </body>

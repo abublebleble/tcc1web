@@ -8,7 +8,7 @@
 <body>
     <h1>Editar Grupo Muscular</h1>
     
-    <form action="{{ route('grupos_musculares.update', ['grupos_musculare' => $grupoMuscular->id]) }}" method="POST">
+    <form action="{{ route('grupos_musculares.update', ['id' => $grupoMuscular->id]) }}" method="POST">
         @csrf
         @method('PUT')
 
@@ -18,6 +18,7 @@
         <button type="submit">Atualizar Grupo Muscular</button>
     </form>
     
+    <!-- Exibição de erros de validação -->
     @if ($errors->any())
         <div>
             <ul>
@@ -28,6 +29,7 @@
         </div>
     @endif
 
+    <!-- Mensagem de sucesso -->
     @if (session('success'))
         <div>
             {{ session('success') }}

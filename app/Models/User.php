@@ -32,17 +32,14 @@ class User extends Authenticatable
         'two_factor_secret',
     ];
 
+    protected $casts = [
+        'is_admin' => 'boolean',
+        'email_verified_at' => 'datetime',
+    ];
+
     protected $appends = [
         'profile_photo_url',
     ];
-
-    protected function casts(): array
-    {
-        return [
-            'email_verified_at' => 'datetime',
-            'password' => 'hashed',
-        ];
-    }
 
     // Relação com Treinos
     public function treinos()

@@ -15,18 +15,29 @@
                     <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                         {{ __('Home') }}
                     </x-nav-link>
-                    
-                    <!-- Custom Navigation Links -->
-                    
+
                     <x-nav-link href="{{ route('treinos.create') }}" :active="request()->routeIs('treinos.create')">
                         {{ __('Criar Novo Treino') }}
                     </x-nav-link>
+
                     <x-nav-link href="{{ route('treinos_exercicio.index') }}" :active="request()->routeIs('treinos_exercicio.index')">
                         {{ __('Ver Meus Treinos') }}
                     </x-nav-link>
+
                     <x-nav-link href="{{ route('progresso.index') }}" :active="request()->routeIs('progresso.index')">
                         {{ __('Ver Progresso') }}
                     </x-nav-link>
+
+                    <!-- Botões visíveis apenas para administradores -->
+                    @if (auth()->check() && auth()->user()->is_admin)
+                        <x-nav-link href="{{ route('exercicios.index') }}" :active="request()->routeIs('exercicios.index')">
+                            {{ __('Exercícios') }}
+                        </x-nav-link>
+
+                        <x-nav-link href="{{ route('grupos_musculares.index') }}" :active="request()->routeIs('grupos_musculares.index')">
+                            {{ __('Grupos Musculares') }}
+                        </x-nav-link>
+                    @endif
                 </div>
             </div>
 
