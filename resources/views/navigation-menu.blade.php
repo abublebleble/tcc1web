@@ -6,35 +6,35 @@
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}">
-                        <x-application-mark class="block h-9 w-auto" />
+                        <img class="block h-16 w-auto" src="{{ asset('images/logosite.png') }}" alt="Logo" />
                     </a>
                 </div>
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex items-center">
-                    <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
+                    <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')" class="text-gray-900 hover:bg-green-500 hover:text-white">
                         {{ __('Home') }}
                     </x-nav-link>
 
-                    <x-nav-link href="{{ route('treinos.create') }}" :active="request()->routeIs('treinos.create')">
+                    <x-nav-link href="{{ route('treinos.create') }}" :active="request()->routeIs('treinos.create')" class="text-gray-900 hover:bg-green-500 hover:text-white">
                         {{ __('Criar Novo Treino') }}
                     </x-nav-link>
 
-                    <x-nav-link href="{{ route('treinos_exercicio.index') }}" :active="request()->routeIs('treinos_exercicio.index')">
+                    <x-nav-link href="{{ route('treinos_exercicio.index') }}" :active="request()->routeIs('treinos_exercicio.index')" class="text-gray-900 hover:bg-green-500 hover:text-white">
                         {{ __('Ver Meus Treinos') }}
                     </x-nav-link>
 
-                    <x-nav-link href="{{ route('progresso.index') }}" :active="request()->routeIs('progresso.index')">
+                    <x-nav-link href="{{ route('progresso.index') }}" :active="request()->routeIs('progresso.index')" class="text-gray-900 hover:bg-green-500 hover:text-white">
                         {{ __('Ver Progresso') }}
                     </x-nav-link>
 
                     <!-- Botões visíveis apenas para administradores -->
                     @if (auth()->check() && auth()->user()->is_admin)
-                        <x-nav-link href="{{ route('exercicios.index') }}" :active="request()->routeIs('exercicios.index')">
+                        <x-nav-link href="{{ route('exercicios.index') }}" :active="request()->routeIs('exercicios.index')" class="text-gray-900 hover:bg-green-500 hover:text-white">
                             {{ __('Exercícios') }}
                         </x-nav-link>
 
-                        <x-nav-link href="{{ route('grupos_musculares.index') }}" :active="request()->routeIs('grupos_musculares.index')">
+                        <x-nav-link href="{{ route('grupos_musculares.index') }}" :active="request()->routeIs('grupos_musculares.index')" class="text-gray-900 hover:bg-green-500 hover:text-white">
                             {{ __('Grupos Musculares') }}
                         </x-nav-link>
                     @endif
@@ -47,12 +47,12 @@
                     <x-dropdown align="right" width="48">
                         <x-slot name="trigger">
                             @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
-                                <button class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition">
+                                <button class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-green-300 transition">
                                     <img class="h-8 w-8 rounded-full object-cover" src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}" />
                                 </button>
                             @else
                                 <span class="inline-flex rounded-md">
-                                    <button type="button" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none focus:bg-gray-50 active:bg-gray-50 transition ease-in-out duration-150">
+                                    <button type="button" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-900 bg-white hover:bg-green-500 hover:text-white focus:outline-none focus:bg-green-700 active:bg-green-700 transition ease-in-out duration-150">
                                         {{ Auth::user()->name }}
                                         <svg class="ms-2 -me-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
