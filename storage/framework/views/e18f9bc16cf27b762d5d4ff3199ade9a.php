@@ -68,7 +68,7 @@
 <?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
 <?php endif; ?>
 <?php $component->withAttributes(['href' => ''.e(route('treinos_exercicio.index')).'','active' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(request()->routeIs('treinos_exercicio.index')),'class' => 'text-gray-900 hover:bg-green-500 hover:text-white']); ?>
-                        <?php echo e(__('Ver Meus Treinos')); ?>
+                        <?php echo e(__('Ver Meus Exercícios')); ?>
 
                      <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>

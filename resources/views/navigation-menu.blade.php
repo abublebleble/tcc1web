@@ -21,7 +21,7 @@
                     </x-nav-link>
 
                     <x-nav-link href="{{ route('treinos_exercicio.index') }}" :active="request()->routeIs('treinos_exercicio.index')" class="text-gray-900 hover:bg-green-500 hover:text-white">
-                        {{ __('Ver Meus Treinos') }}
+                        {{ __('Ver Meus Exercícios') }}
                     </x-nav-link>
 
                     <x-nav-link href="{{ route('progresso.index') }}" :active="request()->routeIs('progresso.index')" class="text-gray-900 hover:bg-green-500 hover:text-white">

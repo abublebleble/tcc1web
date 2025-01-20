@@ -1,0 +1,46 @@
+.card {
+    width: 100%;
+    background: rgb(44, 44, 44);
+    font-family: "Courier New", Courier, monospace;
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
+    overflow: hidden;
+  }
+  
+  .card__title {
+    color: white;
+    font-weight: bold;
+    padding: 10px;
+    background: rgb(34, 34, 34);
+    font-size: 1.2rem;
+    text-align: center;
+  }
+  
+  .card__data {
+    font-size: 0.9rem;
+    display: flex;
+    border: 1px solid rgb(203, 203, 203);
+  }
+  
+  .card__right {
+    width: 40%;
+    border-right: 1px solid rgb(203, 203, 203);
+  }
+  
+  .card__left {
+    width: 60%;
+  }
+  
+  .item {
+    padding: 5px 10px;
+    background-color: white;
+  }
+  
+  .card__right .item {
+    background: rgb(234, 235, 234);
+  }
+  
+  .item:nth-child(even) {
+    background: rgb(220, 220, 220);
+  }
+  
