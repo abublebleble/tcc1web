@@ -37,7 +37,8 @@
                             name="nome_treino" 
                             class="w-full border border-gray-300 rounded-lg p-3 text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition"
                             placeholder="Digite o nome do treino" 
-                            required>
+                            required
+                            maxlength="30">
                     </div>
 
                     <div class="flex items-center justify-between mt-8">

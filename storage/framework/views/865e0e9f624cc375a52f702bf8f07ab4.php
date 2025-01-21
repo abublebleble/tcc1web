@@ -54,7 +54,8 @@
                             Ordem:
                         </label>
                         <input type="number" name="ordem" value="<?php echo e($treinos_exercicio->ordem); ?>" required
-                               class="w-full border border-gray-300 rounded-lg p-3 text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition">
+                               class="w-full border border-gray-300 rounded-lg p-3 text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition"
+                               min="0" step="1">
                     </div>
 
                     <div class="mb-6">
@@ -62,7 +63,8 @@
                             Séries:
                         </label>
                         <input type="number" name="series" value="<?php echo e($treinos_exercicio->series); ?>" required
-                               class="w-full border border-gray-300 rounded-lg p-3 text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition">
+                               class="w-full border border-gray-300 rounded-lg p-3 text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition"
+                               min="0" step="1">
                     </div>
 
                     <div class="mb-6">
@@ -70,7 +72,8 @@
                             Repetições:
                         </label>
                         <input type="number" name="repeticoes" value="<?php echo e($treinos_exercicio->repeticoes); ?>" required
-                               class="w-full border border-gray-300 rounded-lg p-3 text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition">
+                               class="w-full border border-gray-300 rounded-lg p-3 text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition"
+                               min="0" step="1">
                     </div>
 
                     <div class="mb-6">
@@ -78,7 +81,8 @@
                             Carga:
                         </label>
                         <input type="number" step="0.01" name="carga" value="<?php echo e($treinos_exercicio->carga); ?>" required
-                               class="w-full border border-gray-300 rounded-lg p-3 text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition">
+                               class="w-full border border-gray-300 rounded-lg p-3 text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition"
+                               min="0" max="999">
                     </div>
 
                     <div class="flex items-center justify-between mt-8">

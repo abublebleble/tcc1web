@@ -51,7 +51,7 @@
                         </label>
                         <input type="number" id="ordem" name="ordem" 
                                class="w-full border border-gray-300 rounded-lg p-3 text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition" 
-                               required>
+                               required step="1">
                     </div>
 
                     <div class="mb-6">
@@ -60,7 +60,7 @@
                         </label>
                         <input type="number" id="series" name="series" 
                                class="w-full border border-gray-300 rounded-lg p-3 text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition" 
-                               required>
+                               required step="1">
                     </div>
 
                     <div class="mb-6">
@@ -69,16 +69,16 @@
                         </label>
                         <input type="number" id="repeticoes" name="repeticoes" 
                                class="w-full border border-gray-300 rounded-lg p-3 text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition" 
-                               required>
+                               required step="1">
                     </div>
 
                     <div class="mb-6">
                         <label for="carga" class="block text-sm font-medium text-gray-700 mb-2">
                             Carga:
                         </label>
-                        <input type="number" step="0.01" id="carga" name="carga" 
+                        <input type="number" id="carga" name="carga" 
                                class="w-full border border-gray-300 rounded-lg p-3 text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition" 
-                               required>
+                               required step="0.01" max="999">
                     </div>
 
                     <div class="flex items-center justify-between mt-8">

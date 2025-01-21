@@ -61,7 +61,7 @@
                         <input type="number" step="0.01" name="carga" id="carga" 
                                value="<?php echo e($progresso->carga); ?>"
                                class="w-full border border-gray-300 rounded-lg p-3 text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition" 
-                               required>
+                               required min="0" max="999">
                     </div>
 
                     <div class="mb-6">
@@ -71,7 +71,7 @@
                         <input type="number" name="repeticoes_realizadas" id="repeticoes_realizadas" 
                                value="<?php echo e($progresso->repeticoes_realizadas); ?>"
                                class="w-full border border-gray-300 rounded-lg p-3 text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition" 
-                               required>
+                               required min="0" step="1">
                     </div>
 
                     <div class="flex items-center justify-between mt-8">
