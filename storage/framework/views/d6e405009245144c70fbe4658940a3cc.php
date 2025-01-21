@@ -51,7 +51,7 @@
                         <a 
                             href="<?php echo e(route('treinos.index')); ?>" 
                             class="px-6 py-3 rounded-md text-white font-semibold bg-gray-800 hover:bg-gray-700 transition duration-300">
-                            Voltar para Meus Treinos
+                            Ver Meus Treinos
                         </a>
                     </div>
                 </form>

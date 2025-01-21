@@ -68,7 +68,7 @@
                 </div>
 
                 <!-- Botão Voltar para Home com padding superior -->
-                <a href="<?php echo e(route('home')); ?>" class="btn btn-secondary px-6 py-3 rounded-md text-white font-semibold bg-gray-800 hover:bg-gray-700 transition duration-300 mt-6">
+                <a href="<?php echo e(route('dashboard')); ?>" class="btn btn-secondary px-6 py-3 rounded-md text-white font-semibold bg-gray-800 hover:bg-gray-700 transition duration-300 mt-6">
                     Voltar para Home
                 </a>
             </div>

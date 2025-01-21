@@ -9,6 +9,8 @@ use App\Http\Controllers\CreateExerciseController;
 use App\Http\Controllers\TreinoExercicioController;
 use App\Http\Controllers\TreinoController;
 use App\Http\Controllers\ProgressoController;
+use App\Models\Progresso;
+use Illuminate\Support\Facades\Auth;
 
 // Redireciona para o login do Jetstream se o usuário não estiver autenticado
 Route::get('/', function () {
@@ -151,5 +153,5 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
     Route::resource('treinos_exercicio', TreinoExercicioController::class);
     Route::resource('treinos', TreinoController::class);
     Route::resource('progresso', ProgressoController::class);
-});
 
+});

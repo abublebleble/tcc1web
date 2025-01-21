@@ -4,20 +4,50 @@ namespace App\Http\Controllers;
 
 use App\Models\Progresso;
 use App\Models\TreinoExercicio;
+use App\Models\Exercicio; // Certifique-se de que Exercicio está sendo importado
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class ProgressoController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         // Obtém os progressos do usuário autenticado
-        $progressos = Progresso::with('treinoExercicio')
+        $query = Progresso::with('treinoExercicio')
             ->whereHas('treinoExercicio.treino', function($query) {
                 $query->where('user_id', Auth::id());
-            })->get();
-
-        return view('progresso.index', compact('progressos'));
+            });
+    
+        // Obtém todos os exercícios do usuário autenticado
+        $exercicios = Exercicio::whereHas('treinos', function($query) {
+            $query->where('user_id', Auth::id());
+        })->get();
+    
+        // Filtro pelo nome do exercício
+        if ($request->has('exercicio') && $request->input('exercicio')) {
+            $query->whereHas('treinoExercicio.exercicio', function($q) use ($request) {
+                $q->where('id', $request->input('exercicio'));
+            });
+        }
+    
+        // Filtro pela data
+        if ($request->has('data') && $request->input('data')) {
+            $query->whereDate('data', '=', $request->input('data'));
+        }
+    
+        // Recupera os progressos filtrados
+        $progressos = $query->get();
+    
+        // Recupera as datas com progressos registrados para o filtro
+        $datasComProgressos = Progresso::select('data')
+            ->distinct()
+            ->whereHas('treinoExercicio.treino', function($query) {
+                $query->where('user_id', Auth::id());
+            })
+            ->orderBy('data', 'desc')
+            ->get();
+    
+        return view('progresso.index', compact('progressos', 'exercicios', 'datasComProgressos'));
     }
 
     public function create()
@@ -104,4 +134,7 @@ class ProgressoController extends Controller
 
         return redirect()->route('progresso.index')->with('success', 'Progresso removido com sucesso!');
     }
+   
+    
+    
 }
