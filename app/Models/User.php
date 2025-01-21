@@ -8,11 +8,11 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
-use Laravel\Sanctum\HasApiTokens;
+use Laravel\Sanctum\HasApiTokens; // Verifique se o Sanctum está sendo importado
 
 class User extends Authenticatable
 {
-    use HasApiTokens;
+    use HasApiTokens; // Habilita o uso de tokens com o Sanctum
     use HasFactory;
     use HasProfilePhoto;
     use Notifiable;
@@ -22,7 +22,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'is_admin',
+        'is_admin', // Se o usuário for administrador
     ];
 
     protected $hidden = [
@@ -44,12 +44,18 @@ class User extends Authenticatable
     // Relação com Treinos
     public function treinos()
     {
-        return $this->hasMany(Treino::class, 'user_id'); // Adicionando relação com treinos
+        return $this->hasMany(Treino::class, 'user_id');
     }
 
     // Relação com Progresso
     public function progresso()
     {
-        return $this->hasMany(Progresso::class, 'user_id'); // Adicionando relação com progresso
+        return $this->hasMany(Progresso::class, 'user_id');
+    }
+
+    // Se o usuário for administrador, você pode adicionar um método de verificação
+    public function isAdmin()
+    {
+        return $this->is_admin;
     }
 }
