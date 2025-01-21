@@ -15,3 +15,4 @@ Route::middleware('auth:sanctum')->post('logout', [AuthController::class, 'logou
 // Rotas para o progresso
 Route::middleware('auth:sanctum')->get('progressos', [ProgressoController::class, 'index']);
 Route::middleware('auth:sanctum')->post('progressos', [ProgressoController::class, 'store']);
+Route::middleware('auth:sanctum')->get('exercicios/treino', [ProgressoController::class, 'getExerciciosTreino']);

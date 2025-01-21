@@ -82,5 +82,22 @@ public function index(Request $request)
     
     return response()->json(['progressos' => $progressos]);
 }
+public function getExerciciosTreino(Request $request)
+{
+    // Obtém os treinos do usuário autenticado e os exercícios associados
+    $exercicios = TreinoExercicio::with('exercicio') // Inclui os dados do exercício
+        ->whereHas('treino', function ($query) {
+            $query->where('user_id', Auth::id()); // Filtra os treinos do usuário autenticado
+        })
+        ->get()
+        ->map(function ($treinoExercicio) {
+            return [
+                'id' => $treinoExercicio->id,
+                'nome_exercicio' => $treinoExercicio->exercicio->nome_exercicio,
+            ];
+        });
+
+    return response()->json($exercicios);
+}
 
 }
