@@ -3,7 +3,9 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-// Rota protegida por autenticação
-Route::get('/user', function (Request $request) {
-    return $request->user();  // Retorna os dados do usuário autenticado
-})->middleware('auth:sanctum');  // Exige autenticação via Sanctum
+use App\Http\Controllers\API\AuthController;
+
+Route::post('register', [AuthController::class, 'register']);
+Route::post('login', [AuthController::class, 'login']);
+Route::middleware('auth:sanctum')->get('user', [AuthController::class, 'me']);
+Route::middleware('auth:sanctum')->post('logout', [AuthController::class, 'logout']);

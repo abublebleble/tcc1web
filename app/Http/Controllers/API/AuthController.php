@@ -1,5 +1,8 @@
-<?php 
-use App\Http\Controllers\Controller;
+<?php
+
+namespace App\Http\Controllers\API;
+
+use App\Http\Controllers\Controller; // Este é o Controller base
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
@@ -26,14 +29,6 @@ class AuthController extends Controller
         ]);
     }
 
-    // Logout
-    public function logout(Request $request)
-    {
-        $request->user()->tokens()->delete();
-
-        return response()->json(['message' => 'Logout realizado com sucesso']);
-    }
-
     // Registro
     public function register(Request $request)
     {
@@ -56,6 +51,14 @@ class AuthController extends Controller
             'token' => $token,
             'user' => $user,
         ]);
+    }
+
+    // Logout
+    public function logout(Request $request)
+    {
+        $request->user()->tokens()->delete();
+
+        return response()->json(['message' => 'Logout realizado com sucesso']);
     }
 
     // Retornar usuário autenticado
