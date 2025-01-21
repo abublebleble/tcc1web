@@ -24,7 +24,7 @@ class UserSeeder extends Seeder
             ['email' => 'admin@gmail.com'], // Condição para verificar se o administrador já existe
             [
                 'name' => 'Admin User',
-                'password' => Hash::make('12345678'), // Definindo a senha do administrador
+                'password' => Hash::make('!12345678'), // Definindo a senha do administrador
                 'is_admin' => true, // Definindo o usuário como administrador
             ]
         );

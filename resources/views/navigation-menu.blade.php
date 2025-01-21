@@ -1,4 +1,4 @@
-<nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
+<nav x-data="{ open: false, accountOpen: false }" class="bg-white border-b border-gray-100">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
@@ -10,10 +10,8 @@
                     </a>
                 </div>
 
-                <!-- Navigation Links -->
+                <!-- Navigation Links (Desktop version) -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex items-center">
-                    
-
                     <x-nav-link href="{{ route('treinos.create') }}" :active="request()->routeIs('treinos.create')" class="text-gray-900 hover:bg-green-500 hover:text-white">
                         {{ __('Criar Novo Treino') }}
                     </x-nav-link>
@@ -26,7 +24,7 @@
                         {{ __('Ver Progresso') }}
                     </x-nav-link>
 
-                    <!-- Botões visíveis apenas para administradores -->
+                    <!-- Admin only Links -->
                     @if (auth()->check() && auth()->user()->is_admin)
                         <x-nav-link href="{{ route('exercicios.index') }}" :active="request()->routeIs('exercicios.index')" class="text-gray-900 hover:bg-green-500 hover:text-white">
                             {{ __('Exercícios') }}
@@ -39,7 +37,7 @@
                 </div>
             </div>
 
-            <!-- Settings & Hamburger -->
+            <!-- Settings & Hamburger for Mobile -->
             <div class="hidden sm:flex sm:items-center sm:ms-6">
                 <div class="ms-3 relative">
                     <x-dropdown align="right" width="48">
@@ -61,7 +59,6 @@
                         </x-slot>
 
                         <x-slot name="content">
-                            <!-- Account Management -->
                             <div class="block px-4 py-2 text-xs text-gray-400">
                                 {{ __('Manage Account') }}
                             </div>
@@ -79,7 +76,7 @@
                 </div>
             </div>
 
-            <!-- Hamburger Menu -->
+            <!-- Hamburger Menu for Mobile -->
             <div class="-me-2 flex items-center sm:hidden">
                 <button @click="open = ! open" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out">
                     <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
@@ -87,6 +84,51 @@
                         <path :class="{ 'hidden': !open, 'inline-flex': open }" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                     </svg>
                 </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div class="sm:hidden" x-show="open" @click.away="open = false">
+        <div class="space-y-1 px-2 pt-2 pb-3">
+            <x-nav-link href="{{ route('treinos.create') }}" :active="request()->routeIs('treinos.create')" class="text-gray-900 hover:bg-green-500 hover:text-white">
+                {{ __('Criar Novo Treino') }}
+            </x-nav-link>
+
+            <x-nav-link href="{{ route('treinos_exercicio.index') }}" :active="request()->routeIs('treinos_exercicio.index')" class="text-gray-900 hover:bg-green-500 hover:text-white">
+                {{ __('Ver Meus Exercícios') }}
+            </x-nav-link>
+
+            <x-nav-link href="{{ route('progresso.index') }}" :active="request()->routeIs('progresso.index')" class="text-gray-900 hover:bg-green-500 hover:text-white">
+                {{ __('Ver Progresso') }}
+            </x-nav-link>
+
+            @if (auth()->check() && auth()->user()->is_admin)
+                <x-nav-link href="{{ route('exercicios.index') }}" :active="request()->routeIs('exercicios.index')" class="text-gray-900 hover:bg-green-500 hover:text-white">
+                    {{ __('Exercícios') }}
+                </x-nav-link>
+
+                <x-nav-link href="{{ route('grupos_musculares.index') }}" :active="request()->routeIs('grupos_musculares.index')" class="text-gray-900 hover:bg-green-500 hover:text-white">
+                    {{ __('Grupos Musculares') }}
+                </x-nav-link>
+            @endif
+
+            <!-- Manage Account in Mobile -->
+            <div class="pt-4">
+                <button @click="accountOpen = !accountOpen" class="w-full text-left px-4 py-2 text-gray-900 hover:bg-green-500 hover:text-white">
+                    {{ __('Manage Account') }}
+                </button>
+                <div x-show="accountOpen" class="space-y-2 mt-2">
+                    <x-dropdown-link href="{{ route('profile.show') }}">
+                        {{ __('Profile') }}
+                    </x-dropdown-link>
+                    <form method="POST" action="{{ route('logout') }}" x-data>
+                        @csrf
+                        <x-dropdown-link href="{{ route('logout') }}" @click.prevent="$root.submit();">
+                            {{ __('Log Out') }}
+                        </x-dropdown-link>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
